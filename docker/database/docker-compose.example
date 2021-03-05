@@ -1,0 +1,10 @@
+version: '1'
+services:
+  database:
+    image: postgres:9.5
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "아이디"
+      POSTGRES_PASSWORD: "비밀번호"
+      POSTGRES_DB:       "데이터베이스이름"

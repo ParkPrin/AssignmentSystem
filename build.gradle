@@ -58,5 +58,5 @@ dependencies {
 
 
     compile('org.springframework.session:spring-session-jdbc')
-    compile("org.mariadb.jdbc:mariadb-java-client")
+    compile("org.postgresql:postgresql")
 }
