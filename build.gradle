@@ -31,7 +31,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jackson_datatype_version}"
+    implementation "com.fasterxml.jackson.module:jackson-module-afterburner:${jackson_datatype_version}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jackson_datatype_version}"
 
     implementation "org.apache.commons:commons-lang3:${org_apache_commons}"
 
