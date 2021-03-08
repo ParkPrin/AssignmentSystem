@@ -1,4 +1,4 @@
-package me.parkprin.assignment.entity.user;
+package me.parkprin.assignment.users;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 public class UserEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SEQ")
     private Long seq;
 
