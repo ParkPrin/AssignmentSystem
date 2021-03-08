@@ -1,14 +1,14 @@
 package me.parkprin.assignment.initdata;
 
 import me.parkprin.assignment.orders.OrderEntity;
-import me.parkprin.assignment.orders.OrderService;
+import me.parkprin.assignment.orders.OrderServiceImpl;
 import me.parkprin.assignment.orders.OrderStatus;
 import me.parkprin.assignment.products.ProductEntity;
-import me.parkprin.assignment.products.ProductService;
+import me.parkprin.assignment.products.ProductServiceImpl;
 import me.parkprin.assignment.reviews.ReviewEntity;
-import me.parkprin.assignment.reviews.ReviewService;
+import me.parkprin.assignment.reviews.ReviewServiceImpl;
 import me.parkprin.assignment.users.UserEntity;
-import me.parkprin.assignment.users.UserService;
+import me.parkprin.assignment.users.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -29,23 +29,22 @@ import org.json.simple.parser.JSONParser;
 public class InitDataService {
 
     @Autowired
-    private OrderService orderService;
+    private OrderServiceImpl orderService;
 
     @Autowired
-    private ProductService productService;
+    private ProductServiceImpl productService;
 
     @Autowired
-    private ReviewService reviewService;
+    private ReviewServiceImpl reviewService;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     public boolean tableIsNull(){
         return userService.tableLength().longValue() == 0 ? true : false;
     }
 
     public void settingData() throws IOException, ParseException {
-        deleteAll();
         JSONParser parser = new JSONParser();
 
         ClassPathResource classPathResource = new ClassPathResource("./data.json");
@@ -152,12 +151,5 @@ public class InitDataService {
             return LocalDateTime.parse(localDateTime, formatter);
         } else return null;
 
-    }
-
-    private void deleteAll(){
-        orderService.deleteAll();
-        reviewService.deleteAll();
-        productService.deleteAll();
-        userService.deleteAll();
     }
 }
