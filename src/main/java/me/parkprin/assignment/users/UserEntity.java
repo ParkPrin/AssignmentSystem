@@ -3,6 +3,10 @@ package me.parkprin.assignment.users;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -23,7 +27,7 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SEQ")
-    private Long seq;
+    private Long userSeq;
 
     @Column(nullable = false, length = 30)
     private String name;
@@ -90,19 +94,33 @@ public class UserEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
+
         UserEntity that = (UserEntity) o;
-        return loginCount == that.loginCount &&
-                Objects.equals(seq, that.seq) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(passwd, that.passwd) &&
-                Objects.equals(lastLoginAt, that.lastLoginAt) &&
-                Objects.equals(createAt, that.createAt);
+
+        return new EqualsBuilder()
+                .append(userSeq, that.userSeq)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(seq, name, email, passwd, loginCount, lastLoginAt, createAt);
+        return new HashCodeBuilder(17, 37)
+                .append(userSeq)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("seq", userSeq)
+                .append("name", name)
+                .append("email", email)
+                .append("password", "[PROTECTED]")
+                .append("loginCount", loginCount)
+                .append("lastLoginAt", lastLoginAt)
+                .append("createAt", createAt)
+                .toString();
     }
 }

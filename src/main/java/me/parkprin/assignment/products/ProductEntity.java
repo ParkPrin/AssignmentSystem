@@ -22,9 +22,9 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SEQ")
-    private Long seq;
+    private Long productSeq;
 
     @Column(nullable = false, length = 50)
     private String name;
@@ -51,7 +51,7 @@ public class ProductEntity {
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
-                .append("seq", seq)
+                .append("seq", productSeq)
                 .append("name", name)
                 .append("details", details)
                 .append("reviewCount", reviewCount)
@@ -76,22 +76,14 @@ public class ProductEntity {
         ProductEntity that = (ProductEntity) o;
 
         return new EqualsBuilder()
-                .append(reviewCount, that.reviewCount)
-                .append(seq, that.seq)
-                .append(name, that.name)
-                .append(details, that.details)
-                .append(createAt, that.createAt)
+                .append(productSeq, that.productSeq)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(seq)
-                .append(name)
-                .append(details)
-                .append(reviewCount)
-                .append(createAt)
+                .append(productSeq)
                 .toHashCode();
     }
 
