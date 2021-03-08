@@ -12,4 +12,12 @@ public class OrderService {
     public OrderEntity save(OrderEntity order){
         return orderJpaRepository.save(order);
     }
+
+    public Long tableLength(){
+        return orderJpaRepository.count();
+    }
+
+    public void deleteAll(){
+        orderJpaRepository.deleteAll();
+    }
 }

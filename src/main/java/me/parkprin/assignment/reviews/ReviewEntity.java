@@ -87,11 +87,11 @@ public class ReviewEntity {
     }
 
     private void userSeqValidation(UserEntity user){
-        checkArgument(user == null ? true: false, "userSeq must be provided");
+        checkArgument(user != null ? true: false, "userSeq must be provided");
     }
 
     private void productSeqValidation(ProductEntity productSeq){
-        checkArgument(productSeq == null ? true: false, "productSeq must be provided");
+        checkArgument(productSeq != null ? true: false, "productSeq must be provided");
     }
 
     private void contentValidation(String content){

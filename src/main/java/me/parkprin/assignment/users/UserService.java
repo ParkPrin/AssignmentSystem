@@ -12,4 +12,12 @@ public class UserService {
     public UserEntity save(UserEntity user){
         return userJpaRepository.save(user);
     }
+
+    public Long tableLength(){
+        return userJpaRepository.count();
+    }
+
+    public void deleteAll(){
+        userJpaRepository.deleteAll();
+    }
 }

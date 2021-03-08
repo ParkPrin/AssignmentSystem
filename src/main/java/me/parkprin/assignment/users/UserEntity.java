@@ -57,7 +57,7 @@ public class UserEntity {
     }
 
     @Builder
-    public UserEntity(String name, String email, String password, int loginCount){
+    public UserEntity(String name, String email, String passwd, int loginCount){
         createUserValidation(name, email, passwd, loginCount);
         emailCheck(email);
         this.name = name;
@@ -68,14 +68,14 @@ public class UserEntity {
         this.createAt = now();
     }
 
-    private void createUserValidation(String name, String email, String password, int loginCount){
+    private void createUserValidation(String name, String email, String passwd, int loginCount){
         checkArgument(isNotEmpty(name), "name must be provided");
         checkArgument(
                 name.length() >= 1 && name.length() <= 10,
                 "name length must be between 1 and 10 characters"
         );
         checkNotNull(email, "email must be provided");
-        checkNotNull(password, "password must be provided");
+        checkNotNull(passwd, "password must be provided");
     }
 
     private void emailCheck(String email){

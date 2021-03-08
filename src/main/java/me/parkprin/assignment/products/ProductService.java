@@ -12,4 +12,12 @@ public class ProductService {
     public ProductEntity save(ProductEntity product){
         return productJpaRepository.save(product);
     }
+
+    public Long tableLength(){
+        return productJpaRepository.count();
+    }
+
+    public void deleteAll(){
+        productJpaRepository.deleteAll();
+    }
 }

@@ -68,11 +68,12 @@ public class OrderEntity {
     }
 
     public void setReview(ReviewEntity review) {
-        checkArgument(review == null ? true: false, "review must be provided");
+        checkArgument(review != null ? true: false, "review must be provided");
         this.review = review;
     }
 
     public void setStatus(OrderStatus status) {
+        orderStatusValidation(status);
         this.status = status;
     }
 
@@ -109,17 +110,19 @@ public class OrderEntity {
     }
 
     @Builder
-    public OrderEntity(UserEntity user, ProductEntity product, ReviewEntity review, String requestMsg) {
+    public OrderEntity(UserEntity user, ProductEntity product, ReviewEntity review, OrderStatus status,
+                       String requestMsg, String rejectMsg, LocalDateTime completedAt, LocalDateTime rejectedAt) {
         userSeqValidation(user);
         productSeqValidation(product);
+        orderStatusValidation(status);
         this.user = user;
         this.product = product;
         this.review = review;
-        this.status = OrderStatus.REQUESTED;
+        this.status = status;
         this.requestMsg = requestMsg;
-        this.rejectMsg = null;
-        this.completedAt = null;
-        this.rejectedAt = null;
+        this.rejectMsg = rejectMsg;
+        this.completedAt = completedAt;
+        this.rejectedAt = rejectedAt;
     }
 
     @Override
@@ -143,11 +146,15 @@ public class OrderEntity {
     }
 
     private void userSeqValidation(UserEntity user){
-        checkArgument(user == null ? true: false, "user must be provided");
+        checkArgument(user != null ? true: false, "user must be provided");
     }
 
     private void productSeqValidation(ProductEntity product){
-        checkArgument(product == null ? true: false, "product must be provided");
+        checkArgument(product != null ? true: false, "product must be provided");
+    }
+
+    private void orderStatusValidation(OrderStatus orderStatus){
+        checkArgument(orderStatus != null ? true: false, "orderStatus must be provided");
     }
 
 

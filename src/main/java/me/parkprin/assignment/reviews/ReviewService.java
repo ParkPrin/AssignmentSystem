@@ -12,4 +12,12 @@ public class ReviewService {
     public ReviewEntity save(ReviewEntity review){
         return reviewJpaRepository.save(review);
     }
+
+    public Long tableLength(){
+        return reviewJpaRepository.count();
+    }
+
+    public void deleteAll(){
+        reviewJpaRepository.deleteAll();
+    }
 }

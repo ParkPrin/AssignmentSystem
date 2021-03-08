@@ -1,0 +1,118 @@
+{
+  "users" : [
+    {
+      "seq" : null,
+      "name" : "tester",
+      "email" : "tester@gmail.com",
+      "passwd" : "$2a$10$mzF7/rMylsnxxwNcTsJTEOFhh1iaHv3xVox.vpf6JQybEhE4jDZI."
+    }
+  ],
+  "products" : [
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    }
+  ],
+  "reviews" : [
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 2,
+      "content" : "I like it!"
+    }
+  ],
+  "orders" : [
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 1,
+      "review_seq" : null,
+      "state" : "REQUESTED",
+      "request_msg" : null,
+      "reject_msg" : null,
+      "completed_at" : null,
+      "rejected_at" : null
+    },
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 1,
+      "review_seq" : null,
+      "state" : "ACCEPTED",
+      "request_msg" : null,
+      "reject_msg" : null,
+      "completed_at" : null,
+      "rejected_at" : null
+    },
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 1,
+      "review_seq" : null,
+      "state" : "SHIPPING",
+      "request_msg" : null,
+      "reject_msg" : null,
+      "completed_at" : null,
+      "rejected_at" : null
+    },
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 2,
+      "review_seq" : 1,
+      "state" : "COMPLETED",
+      "request_msg" : "plz send it quickly!",
+      "reject_msg" : null,
+      "completed_at" : "2021-01-24 12:10:30",
+      "rejected_at" : null
+    },
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 3,
+      "review_seq" : null,
+      "state" : "COMPLETED",
+      "request_msg" : null,
+      "reject_msg" : null,
+      "completed_at" : "2021-01-24 10:30:10",
+      "rejected_at" : null
+    },
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 3,
+      "review_seq" : null,
+      "state" : "REJECTED",
+      "request_msg" : null,
+      "reject_msg" : "No stock",
+      "completed_at" : null,
+      "rejected_at" : "2021-01-24 18:30:00"
+    },
+    {
+      "seq" : null,
+      "user_seq" : 1,
+      "product_seq" : 3,
+      "review_seq" : null,
+      "state" : "REQUESTED",
+      "request_msg" : null,
+      "reject_msg" : null,
+      "completed_at" : null,
+      "rejected_at" : null
+    }
+
+  ]
+}
