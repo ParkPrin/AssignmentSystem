@@ -113,6 +113,22 @@
       "completed_at" : null,
       "rejected_at" : null
     }
-
+  ],
+  "roles" : [
+    {
+      "seq" : null,
+      "name" : "사용자",
+      "status" : "USER"
+    },
+    {
+      "seq" : null,
+      "name" : "관리자",
+      "status" : "MANAGER"
+    },
+    {
+      "seq" : null,
+      "name" : "운영자",
+      "status" : "ADMIN"
+    }
   ]
 }

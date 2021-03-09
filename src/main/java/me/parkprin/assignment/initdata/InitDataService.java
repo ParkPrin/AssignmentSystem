@@ -7,6 +7,11 @@ import me.parkprin.assignment.products.ProductEntity;
 import me.parkprin.assignment.products.ProductServiceImpl;
 import me.parkprin.assignment.reviews.ReviewEntity;
 import me.parkprin.assignment.reviews.ReviewServiceImpl;
+import me.parkprin.assignment.role.RoleEntity;
+import me.parkprin.assignment.role.RoleServiceImpl;
+import me.parkprin.assignment.role.RoleStatus;
+import me.parkprin.assignment.userandrole.UserAndRoleEntity;
+import me.parkprin.assignment.userandrole.UserAndRoleServiceImpl;
 import me.parkprin.assignment.users.UserEntity;
 import me.parkprin.assignment.users.UserServiceImpl;
 import org.apache.commons.lang3.StringUtils;
@@ -40,6 +45,12 @@ public class InitDataService {
     @Autowired
     private UserServiceImpl userService;
 
+    @Autowired
+    private RoleServiceImpl roleService;
+
+    @Autowired
+    private UserAndRoleServiceImpl userAndRoleService;
+
     public boolean tableIsNull(){
         return userService.tableLength().longValue() == 0 ? true : false;
     }
@@ -53,6 +64,7 @@ public class InitDataService {
         List<UserEntity> userEntityList = new ArrayList<UserEntity>();
         List<ProductEntity> productEntityList = new ArrayList<ProductEntity>();
         List<ReviewEntity> reviewEntityList = new ArrayList<ReviewEntity>();
+        List<RoleEntity> roleEntityList = new ArrayList<RoleEntity>();
 
         JSONArray users = (JSONArray)jsonObject.get("users");
         Iterator<JSONObject> usersIterator = users.iterator();
@@ -143,6 +155,30 @@ public class InitDataService {
             orderService.save(orderEntity);
             count++;
         }
+        JSONArray roles = (JSONArray)jsonObject.get("roles");
+        Iterator<JSONObject> roleIterator = roles.iterator();
+        while(roleIterator.hasNext()){
+            JSONObject role = roleIterator.next();
+            roleEntityList.add(roleService.save(RoleEntity.builder().
+                    name(String.valueOf(role.get("name")))
+                    .status(RoleStatus.valueOf(String.valueOf(role.get("status"))))
+                    .build()));
+        }
+        UserEntity userEntity = userEntityList.get(0);
+        RoleEntity roleUser = roleEntityList.get(0);
+        RoleEntity roleAdmin = roleEntityList.get(2);
+        UserAndRoleEntity userAndUser = UserAndRoleEntity.builder()
+                .user(userEntity)
+                .role(roleUser)
+                .build();
+        UserAndRoleEntity userAndAdmin = UserAndRoleEntity.builder()
+                .user(userEntity)
+                .role(roleAdmin)
+                .build();
+        userAndRoleService.save(userAndUser);
+        userAndRoleService.save(userAndAdmin);
+
+
     }
 
     private LocalDateTime stringToLocalDateTime(String localDateTime){

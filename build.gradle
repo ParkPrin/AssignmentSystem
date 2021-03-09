@@ -26,7 +26,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -42,23 +42,22 @@ dependencies {
     implementation "com.auth0:java-jwt:${java_jwt_version}"
 
     implementation "com.google.guava:guava:${guava_version}"
-    implementation "com.google.guava:guava:${guava_version}"
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')
 
     testCompile('junit:junit:4.12')
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.4.2'
-    testCompile 'org.junit.jupiter:junit-jupiter-params:5.4.2'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
-    testCompile 'org.junit.vintage:junit-vintage-engine:5.4.2'
+    testCompile "org.junit.jupiter:junit-jupiter-api:${junit_version}"
+    testCompile "org.junit.jupiter:junit-jupiter-params:${junit_version}"
+    testRuntime "org.junit.jupiter:junit-jupiter-engine:${junit_version}"
+    testCompile "org.junit.vintage:junit-vintage-engine:${junit_version}"
 
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${jupiter_version}"
     testCompile "org.junit.jupiter:junit-jupiter-params:${jupiter_version}"
     testRuntime "org.junit.jupiter:junit-jupiter-engine:${jupiter_version}"
 
-    implementation "com.googlecode.json-simple:json-simple:1.1.1"
+    implementation "com.googlecode.json-simple:json-simple:${googlecodejson_version}"
 
 
 
@@ -68,4 +67,10 @@ dependencies {
 
     compile('org.springframework.session:spring-session-jdbc')
     compile("org.postgresql:postgresql")
+}
+
+test {
+    useJUnit {
+        includeCategories 'me.parkprin.assignment.initdata.InitDataControllerTest'
+    }
 }

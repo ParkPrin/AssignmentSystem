@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BasicService<T> {
 
-    public T save(T order);
+    public T save(T entity);
     public Long tableLength();
     public void deleteAll();
     public List<T> findAll();

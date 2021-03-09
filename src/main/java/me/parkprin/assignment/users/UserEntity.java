@@ -3,6 +3,7 @@ package me.parkprin.assignment.users;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.parkprin.assignment.userandrole.UserAndRoleEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -10,6 +11,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -47,6 +50,9 @@ public class UserEntity {
     @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createAt;
 
+    @OneToMany(mappedBy = "user")
+    private List<UserAndRoleEntity> userAndRoleEntities = new ArrayList<UserAndRoleEntity>();
+
     public void setPassword(String passwd) {
         this.passwd = passwd;
     }
@@ -71,8 +77,8 @@ public class UserEntity {
     private void createUserValidation(String name, String email, String passwd, int loginCount){
         checkArgument(isNotEmpty(name), "name must be provided");
         checkArgument(
-                name.length() >= 1 && name.length() <= 10,
-                "name length must be between 1 and 10 characters"
+                name.length() >= 1 && name.length() <= 30,
+                "name length must be between 1 and 30 characters"
         );
         checkNotNull(email, "email must be provided");
         checkNotNull(passwd, "password must be provided");

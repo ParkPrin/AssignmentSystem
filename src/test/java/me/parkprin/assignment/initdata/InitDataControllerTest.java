@@ -5,10 +5,12 @@ import me.parkprin.assignment.products.ProductController;
 import me.parkprin.assignment.reviews.ReviewController;
 import me.parkprin.assignment.users.UserController;
 import org.junit.jupiter.api.*;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
@@ -20,6 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -34,8 +37,6 @@ public class InitDataControllerTest {
     }
 
     @Test
-    @Order(1)
-    @DisplayName("테스트 데이터 입력 기능 테스트")
     void reviewFailureTest1() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/api/initdata")
