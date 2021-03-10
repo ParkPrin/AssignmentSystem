@@ -2,9 +2,9 @@ package me.parkprin.assignment.role;
 
 public enum RoleStatus {
 
-    USER("USER"),
-    ADMIN("ADMIN"),
-    MANAGER("MANAGER");
+    USER("ROLE_USER"),
+    ADMIN("ROLE_ADMIN"),
+    MANAGER("ROLE_MANAGER");
 
 
     public final String value;

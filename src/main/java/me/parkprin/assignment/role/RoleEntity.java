@@ -26,7 +26,7 @@ public class RoleEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SEQ")
+    @Column(name = "ROLE_SEQ")
     private Long roleSeq;
 
     @Column(nullable = false, length = 30)
@@ -37,9 +37,6 @@ public class RoleEntity {
 
     @Enumerated(EnumType.STRING)
     private RoleStatus status;
-
-    @OneToMany(mappedBy = "role")
-    private List<UserAndRoleEntity> userAndRoleEntities = new ArrayList<UserAndRoleEntity>();
 
     @Builder
     public RoleEntity(String name, RoleStatus status){

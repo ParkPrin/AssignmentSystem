@@ -29,7 +29,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "SEQ")
+    @Column(name = "USER_SEQ")
     private Long userSeq;
 
     @Column(nullable = false, length = 30)
@@ -50,12 +50,10 @@ public class UserEntity {
     @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime createAt;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserAndRoleEntity> userAndRoleEntities = new ArrayList<UserAndRoleEntity>();
-
     public void setPassword(String passwd) {
         this.passwd = passwd;
     }
+
 
     public void afterLoginSuccess() {
         loginCount++;

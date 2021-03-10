@@ -21,11 +21,11 @@ public class UserAndRoleEntity {
     private Long userAndRoleSeq;
 
     @ManyToOne
-    @JoinColumn(name = "userSeq")
+    @JoinColumn(name = "USER_SEQ")
     private UserEntity user;
 
     @ManyToOne
-    @JoinColumn(name = "roleSeq")
+    @JoinColumn(name = "ROLE_SEQ")
     private RoleEntity role;
 
     @Column(nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

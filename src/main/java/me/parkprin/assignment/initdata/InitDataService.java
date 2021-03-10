@@ -177,6 +177,7 @@ public class InitDataService {
                 .build();
         userAndRoleService.save(userAndUser);
         userAndRoleService.save(userAndAdmin);
+        List<UserAndRoleEntity> list = userAndRoleService.findAll();
 
 
     }
