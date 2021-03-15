@@ -70,6 +70,12 @@ public class UserServiceImpl implements BasicService<UserEntity> {
 
     }
 
+    @Transactional
+    public Optional<UserEntity> findById(Long userSeq){
+        Optional<UserEntity> userEntity = userJpaRepository.findById(userSeq);
+        return userEntity;
+    }
+
     private void loginPasswordCheck(PasswordEncoder passwordEncoder, String credentials, UserEntity userEntity) {
         if (!passwordEncoder.matches(credentials, userEntity.getPasswd())) {
             throw new IllegalArgumentException("Bad credential");

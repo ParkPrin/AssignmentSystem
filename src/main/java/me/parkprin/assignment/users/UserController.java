@@ -1,7 +1,9 @@
 package me.parkprin.assignment.users;
 
+import me.parkprin.assignment.errors.NotFoundException;
 import me.parkprin.assignment.errors.UnauthorizedException;
 import me.parkprin.assignment.security.Jwt;
+import me.parkprin.assignment.security.JwtAuthentication;
 import me.parkprin.assignment.security.JwtAuthenticationToken;
 import me.parkprin.assignment.security.JwtManager;
 import me.parkprin.assignment.utils.ApiUtils;
@@ -9,6 +11,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -61,5 +64,25 @@ public class UserController {
         } catch (AuthenticationException e) {
             throw new UnauthorizedException(e.getMessage(), e);
         }
+    }
+
+    @GetMapping(path = "me")
+    public ApiResult<UserDto> me(
+            @AuthenticationPrincipal JwtAuthentication authentication
+    ) throws NullPointerException {
+        try {
+            if (authentication == null){
+                throw new Exception("Could not found user for " + authentication.id);
+            }
+            return success(
+                    userService.findById(authentication.id)
+                            .map(UserDto::new)
+                            .orElseThrow(() -> new NotFoundException("Could not found user for " + authentication.id))
+            );
+        } catch (Exception e){
+            throw new UnauthorizedException("Could not found user for " + authentication.id);
+        }
+
+
     }
 }

@@ -4,7 +4,10 @@ import me.parkprin.assignment.orders.OrderController;
 import me.parkprin.assignment.products.ProductController;
 import me.parkprin.assignment.reviews.ReviewController;
 import me.parkprin.assignment.users.UserController;
-import org.junit.jupiter.api.*;
+import org.junit.Test;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -25,8 +28,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class InitDataControllerTest {
 
     private MockMvc mockMvc;
@@ -37,7 +38,7 @@ public class InitDataControllerTest {
     }
 
     @Test
-    void reviewFailureTest1() throws Exception {
+    public void reviewFailureTest1() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/api/initdata")
                         .contentType(MediaType.APPLICATION_JSON)
