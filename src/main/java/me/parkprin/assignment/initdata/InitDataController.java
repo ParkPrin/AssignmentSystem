@@ -23,7 +23,7 @@ public class InitDataController {
 
     @GetMapping
     public ApiResult setting() throws IOException, ParseException {
-        initDataService.settingData();
+        if (initDataService.tableIsNull()) initDataService.settingData();
         return success(true);
     }
 }

@@ -93,7 +93,7 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/users/login").permitAll()
                 .antMatchers("/api/initdata").permitAll()
                 .antMatchers("/api/products/**").permitAll()
-                .antMatchers("/api/orders").hasRole(RoleStatus.USER.name())
+                .antMatchers("/api/**").hasRole(RoleStatus.USER.name())
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

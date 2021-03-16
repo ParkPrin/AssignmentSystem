@@ -1,10 +1,8 @@
-package me.parkprin.assignment.test;
+package me.parkprin.assignment.users;
 
 import me.parkprin.assignment.config.JwtTokenConfigure;
-import me.parkprin.assignment.initdata.InitDataController;
 
 import me.parkprin.assignment.security.WithMockJwtAuthentication;
-import me.parkprin.assignment.users.UserController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +19,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphanumeric;
 
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;

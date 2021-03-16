@@ -1,9 +1,12 @@
 package me.parkprin.assignment.products;
 
+import me.parkprin.assignment.errors.NotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import static java.util.stream.Collectors.toList;
 import static me.parkprin.assignment.utils.ApiUtils.success;
 import static me.parkprin.assignment.utils.ApiUtils.ApiResult;
 
@@ -19,6 +22,15 @@ public class ProductController {
 
     @GetMapping
     public ApiResult findAll(){
-        return success(productService.findAll());
+        return success(productService.findAllDesc().stream()
+                .map(ProductDto::new)
+                .collect(toList()));
+    }
+
+    @GetMapping(path = "{id}")
+    public ApiResult findById(@PathVariable Long id) {
+        return success(productService.findById(id)
+                .map(ProductDto::new)
+                .orElseThrow(() -> new NotFoundException("Could not found product for " + id)));
     }
 }
