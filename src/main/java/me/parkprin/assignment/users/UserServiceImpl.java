@@ -2,6 +2,7 @@ package me.parkprin.assignment.users;
 
 import me.parkprin.assignment.errors.NotFoundException;
 import me.parkprin.assignment.reviews.ReviewEntity;
+import me.parkprin.assignment.security.JwtAuthentication;
 import me.parkprin.assignment.service.BasicService;
 import me.parkprin.assignment.userandrole.UserAndRoleEntity;
 import me.parkprin.assignment.userandrole.UserAndRoleServiceImpl;
@@ -73,6 +74,12 @@ public class UserServiceImpl implements BasicService<UserEntity> {
     @Transactional
     public Optional<UserEntity> findById(Long userSeq){
         Optional<UserEntity> userEntity = userJpaRepository.findById(userSeq);
+        return userEntity;
+    }
+
+    @Transactional
+    public Optional<UserEntity> findById(JwtAuthentication authentication){
+        Optional<UserEntity> userEntity = userJpaRepository.findById(authentication.id);
         return userEntity;
     }
 

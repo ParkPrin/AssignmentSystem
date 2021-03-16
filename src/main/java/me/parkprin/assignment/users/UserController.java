@@ -69,19 +69,13 @@ public class UserController {
     @GetMapping(path = "me")
     public ApiResult<UserDto> me(
             @AuthenticationPrincipal JwtAuthentication authentication
-    ) throws NullPointerException {
-        try {
-            if (authentication == null){
-                throw new Exception("Could not found user for " + authentication.id);
-            }
-            return success(
-                    userService.findById(authentication.id)
-                            .map(UserDto::new)
-                            .orElseThrow(() -> new NotFoundException("Could not found user for " + authentication.id))
-            );
-        } catch (Exception e){
-            throw new UnauthorizedException("Could not found user for " + authentication.id);
-        }
+    ) {
+        if (authentication == null) throw new UnauthorizedException("Unauthorized");
+        return success(
+                userService.findById(authentication)
+                        .map(UserDto::new)
+                        .orElseThrow(() -> new NotFoundException("Could not found user"))
+        );
 
 
     }

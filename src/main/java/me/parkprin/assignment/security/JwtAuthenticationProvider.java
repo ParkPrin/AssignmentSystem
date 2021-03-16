@@ -1,6 +1,7 @@
 package me.parkprin.assignment.security;
 
 import me.parkprin.assignment.errors.NotFoundException;
+import me.parkprin.assignment.errors.UnauthorizedException;
 import me.parkprin.assignment.role.RoleEntity;
 import me.parkprin.assignment.role.RoleStatus;
 import me.parkprin.assignment.userandrole.UserAndRoleEntity;

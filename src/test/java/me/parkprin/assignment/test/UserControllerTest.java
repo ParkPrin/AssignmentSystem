@@ -3,7 +3,9 @@ package me.parkprin.assignment.test;
 import me.parkprin.assignment.config.JwtTokenConfigure;
 import me.parkprin.assignment.initdata.InitDataController;
 
+import me.parkprin.assignment.security.WithMockJwtAuthentication;
 import me.parkprin.assignment.users.UserController;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
@@ -46,21 +48,35 @@ public class UserControllerTest {
         this.jwtTokenConfigure = jwtTokenConfigure;
     }
 
-    @Test
+    @Before
     public void dataSetting() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/api/initdata")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON)
         );
-        result.andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(handler().handlerType(InitDataController.class))
-                .andExpect(handler().methodName("setting"))
-                .andExpect(jsonPath("$.success", is(true)))
-                .andExpect(jsonPath("$.response", is(true)))
-                .andExpect(jsonPath("$.error", is(nullValue())));
     }
+
+    @Test
+    @DisplayName("로그인 실패 테스트 (아이디, 비밀번호가 올바르지 않은 경우)")
+    public void loginFailureTest() throws Exception {
+        ResultActions result = mockMvc.perform(
+                post("/api/users/login")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content("{\"principal\":\"tester@gmail.com\",\"credentials\":\"4321\"}")
+        );
+        result.andDo(print())
+                .andExpect(status().is4xxClientError())
+                .andExpect(handler().handlerType(UserController.class))
+                .andExpect(handler().methodName("login"))
+                .andExpect(jsonPath("$.success", is(false)))
+                .andExpect(jsonPath("$.error").exists())
+                .andExpect(jsonPath("$.error.status", is(401)))
+        ;
+    }
+
+
 
     @Test
     @DisplayName("로그인 성공 테스트(아이디, 비밀번호가 올바른 경우)")
@@ -86,8 +102,10 @@ public class UserControllerTest {
         ;
     }
 
+
+
     @Test
-    @DisplayName("자신 계정 조회 실패 테스트 (토큰이 올바르지 않을 경우)")
+    @DisplayName("내 정보 조회 실패 테스트 (토큰이 올바르지 않을 경우)")
     public void meFailureTest() throws Exception {
         ResultActions result = mockMvc.perform(
                 get("/api/users/me")
@@ -99,6 +117,29 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$.success", is(false)))
                 .andExpect(jsonPath("$.error").exists())
                 .andExpect(jsonPath("$.error.status", is(401)))
-                .andExpect(jsonPath("$.error.message", is("Unauthorized")));
+                .andExpect(jsonPath("$.error.message", is("Unauthorized")))
+        ;
+    }
+
+    @Test
+    @WithMockJwtAuthentication
+    @DisplayName("내 정보 조회 성공 테스트 (토큰이 올바른 경우)")
+    public void meSuccessTest() throws Exception {
+
+
+        ResultActions result = mockMvc.perform(
+                get("/api/users/me")
+                        .accept(MediaType.APPLICATION_JSON)
+        );
+        result.andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(handler().handlerType(UserController.class))
+                .andExpect(handler().methodName("me"))
+                .andExpect(jsonPath("$.success", is(true)))
+                .andExpect(jsonPath("$.response.name", is("tester")))
+                .andExpect(jsonPath("$.response.email", is("tester@gmail.com")))
+                .andExpect(jsonPath("$.response.loginCount").exists())
+                .andExpect(jsonPath("$.response.loginCount").isNumber())
+        ;
     }
 }
