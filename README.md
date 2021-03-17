@@ -27,6 +27,12 @@ $ docker-compose -f docker/database/docker-compose.yml up
 http://localhost:5000/api/initdata
 ```
 
+## 테스트 코드 실행
+
+## Swagger
+http://localhost:5000/assignment/swagger-ui/index.html#/
+
+
 
 
 

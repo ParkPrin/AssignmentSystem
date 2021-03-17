@@ -4,7 +4,7 @@ import me.parkprin.assignment.config.JwtTokenConfigure;
 
 import me.parkprin.assignment.security.WithMockJwtAuthentication;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.runner.RunWith;
