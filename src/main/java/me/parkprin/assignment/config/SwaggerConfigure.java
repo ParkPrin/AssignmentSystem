@@ -16,7 +16,7 @@ import static springfox.documentation.builders.PathSelectors.*;
 
 @EnableOpenApi
 @Configuration
-public class SwaggerConfiguer {
+public class SwaggerConfigure {
 
     @Bean
     public Docket multipartApi() {
