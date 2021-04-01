@@ -2,6 +2,8 @@ package me.parkprin.assignment.products;
 
 import me.parkprin.assignment.service.BasicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,12 @@ public class ProductServiceImpl implements BasicService<ProductEntity> {
     @Transactional
     public void deleteAll(){
         productJpaRepository.deleteAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Page<ProductEntity> findAll(Pageable pageable) {
+        return productJpaRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)

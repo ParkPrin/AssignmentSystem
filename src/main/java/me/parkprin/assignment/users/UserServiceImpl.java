@@ -8,6 +8,8 @@ import me.parkprin.assignment.userandrole.UserAndRoleEntity;
 import me.parkprin.assignment.userandrole.UserAndRoleServiceImpl;
 import me.parkprin.assignment.utils.ValidationUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,6 +44,12 @@ public class UserServiceImpl implements BasicService<UserEntity> {
     @Transactional
     public void deleteAll(){
         userJpaRepository.deleteAll();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<UserEntity> findAll(Pageable pageable) {
+        return userJpaRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)

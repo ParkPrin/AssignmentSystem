@@ -25,6 +25,150 @@
       "name" : "Product C",
       "details" : "Very good product",
       "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product A",
+      "details" : null,
+      "review_count" : 0
+    },
+    {
+      "seq" : null,
+      "name" : "Product B",
+      "details" : "Almost sold out!",
+      "review_count" : 1
+    },
+    {
+      "seq" : null,
+      "name" : "Product C",
+      "details" : "Very good product",
+      "review_count" : 0
     }
   ],
   "reviews" : [

@@ -1,6 +1,8 @@
 package me.parkprin.assignment.userandrole;
 
 import me.parkprin.assignment.service.BasicService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +31,12 @@ public class UserAndRoleServiceImpl implements BasicService<UserAndRoleEntity> {
     @Override
     public void deleteAll() {
         userAndRoleJpaRepository.deleteAll();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Page<UserAndRoleEntity> findAll(Pageable pageable) {
+        return userAndRoleJpaRepository.findAll(pageable);
     }
 
     @Transactional(readOnly = true)
