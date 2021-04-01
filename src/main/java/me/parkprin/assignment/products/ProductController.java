@@ -2,7 +2,6 @@ package me.parkprin.assignment.products;
 
 
 import me.parkprin.assignment.errors.NotFoundException;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +24,6 @@ public class ProductController {
 
     @GetMapping
     public ApiResult findAll(Pageable pageable){
-        Page<ProductEntity> productEntities = productService.findAll(pageable);
         return success(productService.findAll(pageable).stream()
                 .map(ProductDto::new)
                 .collect(toList()));

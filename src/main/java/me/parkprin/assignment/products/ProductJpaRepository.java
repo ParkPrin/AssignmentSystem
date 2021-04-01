@@ -10,6 +10,4 @@ import java.util.List;
 
 public interface ProductJpaRepository extends JpaRepository<ProductEntity, Long> {
 
-    @Query(value = "SELECT p.* FROM products p ORDER BY seq DESC", nativeQuery = true)
-    List<ProductEntity> findAllDesc ();
 }

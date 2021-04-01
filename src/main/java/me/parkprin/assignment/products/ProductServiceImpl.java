@@ -45,11 +45,6 @@ public class ProductServiceImpl implements BasicService<ProductEntity> {
     }
 
     @Transactional(readOnly = true)
-    public List<ProductEntity> findAllDesc(){
-        return productJpaRepository.findAllDesc();
-    }
-
-    @Transactional(readOnly = true)
     public Optional<ProductEntity> findById(Long productId){
         checkNotNull(productId, "productId must be provided");
         return productJpaRepository.findById(productId);
